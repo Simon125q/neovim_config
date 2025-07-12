@@ -5,7 +5,8 @@ local keymap = vim.keymap
 keymap.set("i", "jj", "<ESC>", { desc = "Exit insert mode with jj" })
 
 -- changes movements to screenlines
-
+keymap.set({ "n", "v" }, "j", "gj", { desc = "Move up a screenline" })
+keymap.set({ "n", "v" }, "k", "gk", { desc = "Move down a screenline" })
 keymap.set("i", "<Up>", "<C-o>gk", { desc = "Move up a screenline" })
 keymap.set("i", "<Down>", "<C-o>gj", { desc = "Move down a screenline" })
 
