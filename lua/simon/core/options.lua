@@ -1,6 +1,7 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
+local api = vim.api
 
 opt.relativenumber = true
 opt.number = true
@@ -40,3 +41,19 @@ opt.scrolloff = 10
 
 -- turn off swapfile
 opt.swapfile = false
+
+opt.undofile = true
+
+opt.inccommand = "split"
+
+opt.foldmethod = "indent"
+opt.foldlevel = 4
+
+local highlight_group = api.nvim_create_augroup("YankHighlight", { clear = true })
+api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
+})
